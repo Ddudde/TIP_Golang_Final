@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "./mainRoute/pb";
+
+import "google/api/annotations.proto";
+import "google/api/http.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+      title: "AuthService";
+      version: "1.0";
+      description: "AuthService grpc, port: 50051.\n\nMainRoute: doc.json\nAuthService: http://localhost:3000/docs1/mainRoute/pb/auth.swagger.json\nProductService: http://localhost:3000/docs1/mainRoute/pb/product.swagger.json\nProfileService: http://localhost:3000/docs1/mainRoute/pb/profile.swagger.json";
+  };
+
+  // host: "localhost:50051";
+  // base_path: "/";
+  schemes: HTTP;
+  consumes: "application/json";
+  produces: "application/json";
+};
+
+service AuthService {
+  // Registration
+  rpc Register(RegisterRequest) returns (RegisterResponse) {
+    option (google.api.http) = {
+      post: "/authM/register"
+      body: "*"
+    };
+  }
+  // Login
+  rpc Login(LoginRequest) returns (LoginResponse) {
+    option (google.api.http) = {
+      post: "/authM/login"
+      body: "*"
+    };
+  }
+  // Validate
+  rpc Validate(ValidateRequest) returns (ValidateResponse) {
+    option (google.api.http) = {
+      post: "/authM/validate"
+      body: "*"
+    };
+  }
+}
+
+// Register
+
+message RegisterRequest {
+  string logname = 1;
+  string password = 2;
+}
+
+message RegisterResponse {
+  int64 status = 1;
+  string error = 2;
+}
+
+// Login
+
+message LoginRequest {
+  string logname = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  int64 status = 1;
+  string error = 2;
+  string token = 3;
+}
+
+// Validate
+
+message ValidateRequest { string token = 1; }
+
+message ValidateResponse {
+  int64 status = 1;
+  string error = 2;
+  int64 userId = 3;
+}

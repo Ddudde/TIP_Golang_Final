@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package profile;
+
+option go_package = "./profileM/pb";
+
+service ProfileService {
+  rpc GetProfile(GetProfileRequest) returns (GetProfileResponse) {}
+}
+
+message GetProfileRequest {
+  int64 userId = 1;
+}
+
+message GetProfileResponse {
+  int64 status = 1;
+  string error = 2;
+  string logname = 3;
+}

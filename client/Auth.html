@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<title>Ледяная авторизация</title>
+		<link rel="icon" href="favicon.ico">
+	</head>
+	<body>
+		<div class="main">
+			<div class="info vertCenter">
+				<div class="blockLR">
+					<input class="inps" id="inpL" type="text" placeholder="Логин" required pattern="^[a-zA-Z0-9]+$"/>
+					<input class="inps" id="inpP" type="password" placeholder="Пароль" required pattern="^[a-zA-Z0-9]+$"/>
+					<div class="zab">Забыл пароль?</div>
+					<div class="but buttonable" onclick="vxod();">Войти</div>
+				</div>
+			</div>
+		</div>
+		<script defer type="text/javascript" src="js/main.js" onload="init('Авторизация');"></script>
+	</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<title>Ледяной каталог</title>
+		<link rel="icon" href="favicon.ico">
+		<link rel="preconnect" href="https://rsms.me/">
+		<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+	</head>
+	<body>
+		<div class="filter">
+			<div class="info filter">
+				<div class="headerFilter">Фильтры</div>
+				<div class="postHeaderFilter">СТРАНА-ПРОИЗВОДИТЕЛЬ</div>
+				<div class="blockFilter">
+					<div>
+						<input type="radio" value="any" checked name="country"/>Любая
+					</div>
+					<div>
+						<input type="radio" value="RU" name="country"/>Россия
+					</div>
+					<div>
+						<input type="radio" value="FR" name="country"/>Франция
+					</div>
+					<div>
+						<input type="radio" value="BY" name="country"/>Белоруссия
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="main">
+			<div class="info cat">
+				<div class="blockSort">
+					<div class="dopEl"><span class="elC">0</span> товаров</div>
+					<div class="zag" onclick="changeZag(event);">
+						<div>По популярности</div>
+						<div class="arrow"></div>
+					</div>
+					<div class="choose" data-vis=false>
+						<div>По популярности</div>
+						<div>По уменьшению цены</div>
+						<div>По увеличению цены</div>
+					</div>
+				</div>
+				<div class="blockCat"></div>
+			</div>
+		</div>
+		<script defer type="text/javascript" src="js/main.js" onload="init('Каталог');"></script>
+	</body>
+</html>

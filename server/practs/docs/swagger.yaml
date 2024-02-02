@@ -1,0 +1,167 @@
+basePath: /
+definitions:
+  practs_mainRoute_pb.GetProductResponse:
+    properties:
+      error:
+        type: string
+      products:
+        items:
+          $ref: '#/definitions/practs_mainRoute_pb.Prodct'
+        type: array
+      status:
+        type: integer
+    type: object
+  practs_mainRoute_pb.GetProfileResponse:
+    properties:
+      error:
+        type: string
+      logname:
+        type: string
+      status:
+        type: integer
+    type: object
+  practs_mainRoute_pb.LoginRequest:
+    properties:
+      logname:
+        type: string
+      password:
+        type: string
+    type: object
+  practs_mainRoute_pb.LoginResponse:
+    properties:
+      error:
+        type: string
+      status:
+        type: integer
+      token:
+        type: string
+    type: object
+  practs_mainRoute_pb.Prodct:
+    properties:
+      gram:
+        type: integer
+      img:
+        type: string
+      price:
+        type: integer
+      zag:
+        type: string
+    type: object
+  practs_mainRoute_pb.RegisterRequest:
+    properties:
+      logname:
+        type: string
+      password:
+        type: string
+    type: object
+  practs_mainRoute_pb.RegisterResponse:
+    properties:
+      error:
+        type: string
+      status:
+        type: integer
+    type: object
+host: localhost:3000
+info:
+  contact: {}
+  description: 'Route in HTTP to Services(AuthM, ProductM, ProfileM).\n\nMainRoute:
+    doc.json\nAuthService: http://localhost:3000/docs1/mainRoute/pb/auth.swagger.json\nProductService:
+    http://localhost:3000/docs1/mainRoute/pb/product.swagger.json\nProfileService:
+    http://localhost:3000/docs1/mainRoute/pb/profile.swagger.json'
+  title: MainRouteService
+  version: "1.0"
+paths:
+  /auth/login:
+    post:
+      description: Authorization in system
+      parameters:
+      - description: Login and pass
+        in: body
+        name: main
+        required: true
+        schema:
+          $ref: '#/definitions/practs_mainRoute_pb.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/practs_mainRoute_pb.LoginResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/practs_mainRoute_pb.LoginResponse'
+      summary: Authorization
+      tags:
+      - auth
+  /auth/register:
+    post:
+      description: Registration new account
+      parameters:
+      - description: Login and pass
+        in: body
+        name: main
+        required: true
+        schema:
+          $ref: '#/definitions/practs_mainRoute_pb.RegisterRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/practs_mainRoute_pb.RegisterResponse'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/practs_mainRoute_pb.RegisterResponse'
+      summary: Registration
+      tags:
+      - auth
+  /product:
+    get:
+      description: Отправка каталога магазина
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/practs_mainRoute_pb.GetProductResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/practs_mainRoute_pb.GetProductResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get Product
+      tags:
+      - product
+  /profile:
+    get:
+      description: Получение профиля юзера
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/practs_mainRoute_pb.GetProfileResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/practs_mainRoute_pb.GetProfileResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get Profile
+      tags:
+      - profile
+schemes:
+- HTTP
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

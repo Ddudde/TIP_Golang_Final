@@ -1,0 +1,11 @@
+{
+  "protoc": {
+    "path": "/usr/local/bin/protoc",
+    "compile_on_save": false,
+    "options": [
+      "-I=${workspaceRoot}/proto",
+      "-I=${workspaceRoot}/includes/googleapis",
+      "-I=${workspaceRoot}/includes/grpc-gateway"
+    ]
+  }
+}
